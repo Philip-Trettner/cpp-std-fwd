@@ -11,6 +11,49 @@
 #error "Unknown stdlib"
 #endif
 
+/*
+ * TODO:
+ *   <tuple>
+ *   <any>
+ *   <optional>
+ *   <variant>
+ *   <string_view>
+ *   <deque>
+ *   <list>
+ *   <forward_list>
+ *   <set>
+ *   <map>
+ *   <unordered_map>
+ *   <unordered_set>
+ *   <stack>
+ *   <queue>
+ *   <complex>
+ *   <valarray>
+ *   <filesystem>
+ *
+ * TODO: (secondary)
+ *   <chrono>
+ *   <random>
+ *   <ratio>
+ *   <regex>
+ *   <atomic>
+ *   <thread>
+ *   <mutex>
+ *   <shared_mutex>
+ *   <future>
+ *   <condition_variable>
+ *
+ * ??
+ *  <scoped_allocator>
+ *  <memory_resource>
+ *  <exception>
+ *  <stdexcept>
+ *  <iterator>
+ *  <locale>
+ */
+
+#include <iosfwd> // all of input/output
+
 #if defined(STDFWD_IS_LIBSTDCPP)
 
 #include <bits/memoryfwd.h> // allocator, uses_allocator
@@ -24,6 +67,10 @@ namespace std _GLIBCXX_VISIBILITY(default)
     class initializer_list;
 
     _GLIBCXX_BEGIN_NAMESPACE_VERSION
+
+    // <utility>
+    template <typename _T1, typename _T2>
+    struct pair;
 
     // <memory>
     template <typename _Tp>
@@ -53,6 +100,10 @@ namespace std _GLIBCXX_VISIBILITY(default)
 
     _GLIBCXX_BEGIN_NAMESPACE_CONTAINER
 
+    // <bitset>
+    template <size_t _Nb>
+    class bitset;
+
     // <array>
     template <typename _Tp, std::size_t _Nm>
     struct array;
@@ -60,10 +111,19 @@ namespace std _GLIBCXX_VISIBILITY(default)
     _GLIBCXX_END_NAMESPACE_CONTAINER
 } // namespace std_GLIBCXX_VISIBILITY(default)
 
+#else
+
+#error "not implemented"
+
+#endif
+
 namespace stdfwd
 {
 // <initializer_list>
 using std::initializer_list;
+
+// <utility>
+using std::pair;
 
 // <memory>
 using std::allocator;
@@ -89,12 +149,12 @@ using std::wstring;
 template <typename _Tp, typename _Alloc = std::allocator<_Tp>>
 using vector = std::vector<_Tp, _Alloc>;
 
+// <bitset>
+using std::bitset;
+
 // <array>
 using std::array;
+
+// <iosfwd>
+// ??
 }
-
-#else
-
-#error "not implemented"
-
-#endif
