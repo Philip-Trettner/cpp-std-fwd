@@ -1,2 +1,76 @@
 # cpp-std-fwd
-forward declarations for C++ std headers
+
+Forward declarations for all runtime classes of the C++ standard library.
+
+## Usage:
+
+Use forward declarations where possible in the header:
+
+```cpp
+#include <stdfwd.hh>
+
+stdfwd::string get_string();
+stdfwd::vector<int> get_vector();
+stdfwd::deque<int> get_deque();
+stdfwd::list<int> get_list();
+stdfwd::stack<int> get_stack();
+stdfwd::forward_list<int> get_forward_list();
+stdfwd::shared_ptr<int> get_shared_ptr();
+stdfwd::unique_ptr<int> get_unique_ptr();
+stdfwd::array<int, 3> get_array();
+stdfwd::function<int()> get_function();
+stdfwd::bitset<3> get_bitset();
+stdfwd::pair<int, int> get_pair();
+stdfwd::map<int, int> get_map();
+stdfwd::set<int> get_set();
+stdfwd::unordered_map<int, int> get_unordered_map();
+stdfwd::unordered_set<int> get_unordered_set();
+...
+```
+
+And in the `.cc` just `#include <header>` and define the functions using the normal `std` type (all declarations inside `stdfwd` are typedefs into `std`).
+
+## FAQ
+
+* Why?
+
+  Each non-trivial `std` header adds 50-200 ms compiler just by including them. 
+  `#include <stdfwd.hh>` is virtually free.
+
+* Isn't adding declarations to `std` undefined behavior?
+
+  Yes. 
+  This project is meant as a proof-of-concept for a proposal to standardize a forward declaration header for `std`.
+
+* Why the namespace `stdfwd`?
+
+  Some classes like `std::vector` have default template arguments which must only appear on a declaration once.
+  If they appear on the definition then they cannot appear on the forward declaration.
+  Thus, all forward declarations in `std` are without default arguments and `stdfwd` adds typedefs with the appropriate defaults.
+
+* Why are some classes like `std::integer_sequence` missing?
+
+  I omitted classes that are intended for compile-time programming because there seems to be little reason to forward declare them.
+
+* What are the use cases?
+
+  Many functions defined in a header but implemented elsewhere don't require complete definitions of their arguments or return types.
+  `std::vector<int> foo();` can be defined without including `<vector>` given forward declarations.
+
+  Furthermore, many data types might want to specialize `std::less` or `std::hash` so that their users can use them inside `std::map` or `std::unordered_map`.
+  Currently this requires including `<functional>` (one of the most expensive `std` headers to include) even if the data type itself uses nothing from that header.
+  With a forward declaration, `less` and `hash` can be specialized without including the full header.
+
+* Won't this be obsolete with modules?
+
+  Yes and no.
+  In C++20, `std` itself is not yet modularized.
+  Additionally, it is not clear if all code bases can be immediately migrated to modules.
+  This `std` forward header is a small and easy-to-implement non-intrusive change with big payoffs for many code bases.
+
+
+## TODO
+
+* complete list of C++17 forward declarations
+* make versions for `msvc` and `libc++`
+* add benchmarks
