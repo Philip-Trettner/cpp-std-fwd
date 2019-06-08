@@ -17,13 +17,9 @@
  * TODO: (secondary)
  *   <chrono>
  *   <random>
- *   <thread>
- *   <mutex>
- *   <shared_mutex>
- *   <future>
- *   <condition_variable>
  *
- * ??
+ * TODO ??
+ *
  *  <scoped_allocator>
  *  <memory_resource>
  *  <exception>
@@ -34,6 +30,7 @@
  *  <valarray> slices?
  *  <filesystem> more types?
  *  <regex> iterators?
+ *  <mutex> raii types?
  */
 
 #include <iosfwd> // all of input/output
@@ -88,6 +85,36 @@ namespace std _GLIBCXX_VISIBILITY(default)
     template <typename _Tp>
     struct atomic;
     struct atomic_flag;
+
+    // <mutex>
+    class mutex;
+    class timed_mutex;
+    class recursive_mutex;
+    class recursive_timed_mutex;
+
+    // <shared_mutex>
+    class shared_mutex;
+    class shared_timed_mutex;
+
+    // <thread>
+    class thread;
+
+    // <future>
+    template <typename _Res>
+    class future;
+    template <typename _Res>
+    class shared_future;
+    template <typename _Signature>
+    class packaged_task;
+    template <typename _Res>
+    class promise;
+
+    // <condition_variable>
+    class condition_variable;
+    inline namespace _V2
+    {
+    class condition_variable_any;
+    }
 
     // <string_view>
     template <typename _CharT, typename _Traits>
@@ -364,6 +391,29 @@ using std::atomic_ptrdiff_t;
 using std::atomic_size_t;
 using std::atomic_uintmax_t;
 using std::atomic_uintptr_t;
+
+// <mutex>
+using std::mutex;
+using std::recursive_mutex;
+using std::recursive_timed_mutex;
+using std::timed_mutex;
+
+// <shared_mutex>
+using std::shared_mutex;
+using std::shared_timed_mutex;
+
+// <thread>
+using std::thread;
+
+// <future>
+using std::future;
+using std::packaged_task;
+using std::promise;
+using std::shared_future;
+
+// <condition_variable>
+using std::condition_variable;
+using std::condition_variable_any;
 
 // <string_view>
 template <typename _CharT, typename _Traits = std::char_traits<_CharT>>

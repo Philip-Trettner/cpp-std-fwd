@@ -25,28 +25,34 @@ stdfwd::complex<float> get_complex();
 stdfwd::valarray<float> get_valarray();
 stdfwd::filesystem::path get_path();
 stdfwd::regex get_regex();
+stdfwd::promise<int> get_promise();
 
 #include <any>
 #include <array>
 #include <atomic>
 #include <bitset>
 #include <complex>
+#include <condition_variable>
 #include <deque>
 #include <filesystem>
 #include <forward_list>
 #include <functional>
+#include <future>
 #include <iosfwd>
 #include <iostream>
 #include <list>
 #include <map>
 #include <memory>
+#include <mutex>
 #include <optional>
 #include <queue>
 #include <regex>
 #include <set>
+#include <shared_mutex>
 #include <stack>
 #include <string>
 #include <string_view>
+#include <thread>
 #include <tuple>
 #include <unordered_map>
 #include <unordered_set>
@@ -80,5 +86,4 @@ std::complex<float> get_complex() { return 1; }
 std::valarray<float> get_valarray() { return {1, 2, 3}; }
 std::filesystem::path get_path() { return std::filesystem::path("/"); }
 std::regex get_regex() { return std::regex("a"); }
-
-std::atomic_flag a = 0;
+std::promise<int> get_promise() { return {}; }
