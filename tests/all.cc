@@ -16,25 +16,33 @@ stdfwd::map<int, int> get_map();
 stdfwd::set<int> get_set();
 stdfwd::unordered_map<int, int> get_unordered_map();
 stdfwd::unordered_set<int> get_unordered_set();
+stdfwd::tuple<int, int> get_tuple();
+stdfwd::any get_any();
+stdfwd::optional<int> get_optional();
+stdfwd::variant<int> get_variant();
 
+#include <any>
 #include <array>
 #include <bitset>
 #include <deque>
 #include <forward_list>
 #include <functional>
 #include <iosfwd>
+#include <iostream>
 #include <list>
 #include <map>
 #include <memory>
+#include <optional>
 #include <queue>
 #include <set>
 #include <stack>
 #include <string>
+#include <tuple>
 #include <unordered_map>
 #include <unordered_set>
 #include <utility>
+#include <variant>
 #include <vector>
-#include <iostream>
 
 std::string get_string() { return ""; }
 std::vector<int> get_vector() { return {1, 2, 3}; }
@@ -48,8 +56,13 @@ std::array<int, 3> get_array() { return {{1, 2, 3}}; }
 std::function<int()> get_function() { return nullptr; }
 std::bitset<3> get_bitset() { return {}; }
 std::pair<int, int> get_pair() { return {1, 2}; }
+std::tuple<int, int> get_tuple() { return {1, 2}; }
 std::map<int, int> get_map() { return {{1, 2}}; }
 std::set<int> get_set() { return {1, 2}; }
 std::unordered_map<int, int> get_unordered_map() { return {{1, 2}}; }
 std::unordered_set<int> get_unordered_set() { return {1, 2}; }
+std::any get_any() { return 1; }
+std::optional<int> get_optional() { return 1; }
+std::variant<int> get_variant() { return 1; }
 
+std::monostate a;

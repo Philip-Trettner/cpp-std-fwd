@@ -13,7 +13,6 @@
 
 /*
  * TODO:
- *   <tuple>
  *   <any>
  *   <optional>
  *   <variant>
@@ -65,6 +64,23 @@ namespace std _GLIBCXX_VISIBILITY(default)
     // <utility>
     template <typename _T1, typename _T2>
     struct pair;
+
+    // <tuple>
+    template <typename... _Elements>
+    class tuple;
+
+    // <any>
+    class any;
+
+    // <optional>
+    template <typename _Tp>
+    class optional;
+    struct nullopt_t;
+
+    // <variant>
+    template <typename... _Types>
+    class variant;
+    struct monostate;
 
     // <memory>
     template <typename _Tp>
@@ -180,6 +196,20 @@ using std::initializer_list;
 
 // <utility>
 using std::pair;
+
+// <tuple>
+using std::tuple;
+
+// <any>
+using std::any;
+
+// <optional>
+using std::nullopt_t;
+using std::optional;
+
+// <variant>
+using std::monostate;
+using std::variant;
 
 // <memory>
 using std::allocator;
