@@ -34,6 +34,7 @@ stdfwd::unordered_set<int> get_unordered_set();
 #include <unordered_set>
 #include <utility>
 #include <vector>
+#include <iostream>
 
 std::string get_string() { return ""; }
 std::vector<int> get_vector() { return {1, 2, 3}; }
@@ -52,4 +53,3 @@ std::set<int> get_set() { return {1, 2}; }
 std::unordered_map<int, int> get_unordered_map() { return {{1, 2}}; }
 std::unordered_set<int> get_unordered_set() { return {1, 2}; }
 
-std::priority_queue<int> a;

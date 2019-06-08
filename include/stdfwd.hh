@@ -270,5 +270,71 @@ using std::bitset;
 using std::array;
 
 // <iosfwd>
-// ??
+using std::char_traits;
+template <class charT, class traits = char_traits<charT>>
+using basic_ios = std::basic_ios<charT, traits>;
+template <class charT, class traits = char_traits<charT>>
+using basic_streambuf = std::basic_streambuf<charT, traits>;
+template <class charT, class traits = char_traits<charT>>
+using basic_istream = std::basic_istream<charT, traits>;
+template <class charT, class traits = char_traits<charT>>
+using basic_ostream = std::basic_ostream<charT, traits>;
+template <class charT, class traits = char_traits<charT>>
+using basic_iostream = std::basic_iostream<charT, traits>;
+template <class charT, class traits = char_traits<charT>, class Allocator = allocator<charT>>
+using basic_stringbuf = std::basic_stringbuf<charT, traits, Allocator>;
+
+template <class charT, class traits = char_traits<charT>, class Allocator = allocator<charT>>
+using basic_istringstream = std::basic_istringstream<charT, traits, Allocator>;
+template <class charT, class traits = char_traits<charT>, class Allocator = allocator<charT>>
+using basic_ostringstream = std::basic_ostringstream<charT, traits, Allocator>;
+template <class charT, class traits = char_traits<charT>, class Allocator = allocator<charT>>
+using basic_stringstream = std::basic_stringstream<charT, traits, Allocator>;
+
+template <class charT, class traits = char_traits<charT>>
+using basic_filebuf = std::basic_filebuf<charT, traits>;
+template <class charT, class traits = char_traits<charT>>
+using basic_ifstream = std::basic_ifstream<charT, traits>;
+template <class charT, class traits = char_traits<charT>>
+using basic_ofstream = std::basic_ofstream<charT, traits>;
+template <class charT, class traits = char_traits<charT>>
+using basic_fstream = std::basic_fstream<charT, traits>;
+
+template <class charT, class traits = char_traits<charT>>
+using istreambuf_iterator = std::istreambuf_iterator<charT, traits>;
+template <class charT, class traits = char_traits<charT>>
+using ostreambuf_iterator = std::ostreambuf_iterator<charT, traits>;
+
+using ios = basic_ios<char>;
+using wios = basic_ios<wchar_t>;
+
+using streambuf = basic_streambuf<char>;
+using istream = basic_istream<char>;
+using ostream = basic_ostream<char>;
+using iostream = basic_iostream<char>;
+
+using stringbuf = basic_stringbuf<char>;
+using istringstream = basic_istringstream<char>;
+using ostringstream = basic_ostringstream<char>;
+using stringstream = basic_stringstream<char>;
+
+using filebuf = basic_filebuf<char>;
+using ifstream = basic_ifstream<char>;
+using ofstream = basic_ofstream<char>;
+using fstream = basic_fstream<char>;
+
+using wstreambuf = basic_streambuf<wchar_t>;
+using wistream = basic_istream<wchar_t>;
+using wostream = basic_ostream<wchar_t>;
+using wiostream = basic_iostream<wchar_t>;
+
+using wstringbuf = basic_stringbuf<wchar_t>;
+using wistringstream = basic_istringstream<wchar_t>;
+using wostringstream = basic_ostringstream<wchar_t>;
+using wstringstream = basic_stringstream<wchar_t>;
+
+using wfilebuf = basic_filebuf<wchar_t>;
+using wifstream = basic_ifstream<wchar_t>;
+using wofstream = basic_ofstream<wchar_t>;
+using wfstream = basic_fstream<wchar_t>;
 }
