@@ -34,7 +34,7 @@ And in the `.cc` just `#include <header>` and define the functions using the nor
 
 * Why?
 
-  Each non-trivial `std` header adds 50-200 ms compiler just by including them. 
+  Each non-trivial `std` header adds 50-200 ms compile time just by including them. 
   `#include <stdfwd.hh>` is virtually free.
 
 * Isn't adding declarations to `std` undefined behavior?
