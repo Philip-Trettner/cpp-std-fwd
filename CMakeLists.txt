@@ -18,4 +18,9 @@ else()
     target_compile_options(${PROJECT_NAME} PUBLIC
         -Wall
     )
+
+    # Clang filesystem
+    if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+        target_link_libraries(${PROJECT_NAME} PUBLIC stdc++fs)
+    endif()
 endif()

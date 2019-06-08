@@ -20,11 +20,17 @@ stdfwd::tuple<int, int> get_tuple();
 stdfwd::any get_any();
 stdfwd::optional<int> get_optional();
 stdfwd::variant<int> get_variant();
+stdfwd::string_view get_string_view();
+stdfwd::complex<float> get_complex();
+stdfwd::valarray<float> get_valarray();
+stdfwd::filesystem::path get_path();
 
 #include <any>
 #include <array>
 #include <bitset>
+#include <complex>
 #include <deque>
+#include <filesystem>
 #include <forward_list>
 #include <functional>
 #include <iosfwd>
@@ -37,10 +43,12 @@ stdfwd::variant<int> get_variant();
 #include <set>
 #include <stack>
 #include <string>
+#include <string_view>
 #include <tuple>
 #include <unordered_map>
 #include <unordered_set>
 #include <utility>
+#include <valarray>
 #include <variant>
 #include <vector>
 
@@ -64,5 +72,9 @@ std::unordered_set<int> get_unordered_set() { return {1, 2}; }
 std::any get_any() { return 1; }
 std::optional<int> get_optional() { return 1; }
 std::variant<int> get_variant() { return 1; }
+std::string_view get_string_view() { return ""; }
+std::complex<float> get_complex() { return 1; }
+std::valarray<float> get_valarray() { return {1, 2, 3}; }
+std::filesystem::path get_path() { return std::filesystem::path("/"); }
 
-std::monostate a;
+std::filesystem::path a;

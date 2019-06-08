@@ -12,15 +12,6 @@
 #endif
 
 /*
- * TODO:
- *   <any>
- *   <optional>
- *   <variant>
- *   <string_view>
- *   <complex>
- *   <valarray>
- *   <filesystem>
- *
  * TODO: (secondary)
  *   <chrono>
  *   <random>
@@ -40,6 +31,9 @@
  *  <stdexcept>
  *  <iterator>
  *  <locale>
+ *
+ *  <valarray> slices?
+ *  <filesystem> more types?
  */
 
 #include <iosfwd> // all of input/output
@@ -81,6 +75,22 @@ namespace std _GLIBCXX_VISIBILITY(default)
     template <typename... _Types>
     class variant;
     struct monostate;
+
+    // <complex>
+    template <typename _Tp>
+    struct complex;
+
+    // <valarray>
+    template <class _Tp>
+    class valarray;
+
+    // <string_view>
+    template <typename _CharT, typename _Traits>
+    class basic_string_view;
+    using string_view = basic_string_view<char, std::char_traits<char>>;
+    using wstring_view = basic_string_view<wchar_t, std::char_traits<wchar_t>>;
+    using u16string_view = basic_string_view<char16_t, std::char_traits<char16_t>>;
+    using u32string_view = basic_string_view<char32_t, std::char_traits<char32_t>>;
 
     // <memory>
     template <typename _Tp>
@@ -168,6 +178,16 @@ namespace std _GLIBCXX_VISIBILITY(default)
 
     _GLIBCXX_END_NAMESPACE_CONTAINER
 
+    namespace filesystem
+    {
+    _GLIBCXX_BEGIN_NAMESPACE_CXX11_INLINE
+
+    // <filesystem>
+    class path;
+
+    _GLIBCXX_END_NAMESPACE_CXX11
+    }
+
     _GLIBCXX_END_NAMESPACE_VERSION
 
     _GLIBCXX_BEGIN_NAMESPACE_CONTAINER
@@ -189,6 +209,8 @@ namespace std _GLIBCXX_VISIBILITY(default)
 
 #endif
 
+// dedicated forward declaration namespace
+// (provides proper default template arguments)
 namespace stdfwd
 {
 // <initializer_list>
@@ -210,6 +232,20 @@ using std::optional;
 // <variant>
 using std::monostate;
 using std::variant;
+
+// <complex>
+using std::complex;
+
+// <valarray>
+using std::valarray;
+
+// <string_view>
+template <typename _CharT, typename _Traits = std::char_traits<_CharT>>
+using basic_string_view = std::basic_string_view<_CharT, _Traits>;
+using std::string_view;
+using std::u16string_view;
+using std::u32string_view;
+using std::wstring_view;
 
 // <memory>
 using std::allocator;
@@ -367,4 +403,10 @@ using wfilebuf = basic_filebuf<wchar_t>;
 using wifstream = basic_ifstream<wchar_t>;
 using wofstream = basic_ofstream<wchar_t>;
 using wfstream = basic_fstream<wchar_t>;
+
+namespace filesystem
+{
+// <filesystem>
+using std::filesystem::path;
+}
 }
