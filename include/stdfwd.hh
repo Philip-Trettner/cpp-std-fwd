@@ -3,7 +3,7 @@
 // see https://stackoverflow.com/questions/31657499/how-to-detect-stdlib-libc-in-the-preprocessor
 #include <ciso646>
 
-#include <cstdint>
+#include <cstdint> // for std::atomic typedefs
 
 #if defined(_LIBCPP_VERSION)
 #define STDFWD_IS_LIBCPP
