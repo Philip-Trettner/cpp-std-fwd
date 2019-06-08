@@ -1,6 +1,6 @@
 # cpp-std-fwd
 
-Forward declarations for all runtime classes of the C++ standard library.
+Forward declarations for most useful runtime classes of the C++ 17 standard library.
 
 ## Usage:
 
