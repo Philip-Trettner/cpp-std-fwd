@@ -24,9 +24,11 @@ stdfwd::string_view get_string_view();
 stdfwd::complex<float> get_complex();
 stdfwd::valarray<float> get_valarray();
 stdfwd::filesystem::path get_path();
+stdfwd::regex get_regex();
 
 #include <any>
 #include <array>
+#include <atomic>
 #include <bitset>
 #include <complex>
 #include <deque>
@@ -40,6 +42,7 @@ stdfwd::filesystem::path get_path();
 #include <memory>
 #include <optional>
 #include <queue>
+#include <regex>
 #include <set>
 #include <stack>
 #include <string>
@@ -76,5 +79,6 @@ std::string_view get_string_view() { return ""; }
 std::complex<float> get_complex() { return 1; }
 std::valarray<float> get_valarray() { return {1, 2, 3}; }
 std::filesystem::path get_path() { return std::filesystem::path("/"); }
+std::regex get_regex() { return std::regex("a"); }
 
-std::filesystem::path a;
+std::atomic_flag a = 0;
