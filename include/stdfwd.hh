@@ -14,11 +14,7 @@
 #endif
 
 /*
- * TODO: (secondary)
- *   <chrono>
- *   <random>
- *
- * TODO ??
+ * TODO: are these useful at all?
  *
  *  <scoped_allocator>
  *  <memory_resource>
@@ -27,10 +23,14 @@
  *  <iterator>
  *  <locale>
  *
+ * TODO:
+ *
  *  <valarray> slices?
  *  <filesystem> more types?
  *  <regex> iterators?
  *  <mutex> raii types?
+ *  <random> what is useful here?
+ *  <chrono> depends heavily on ratio
  */
 
 #include <iosfwd> // all of input/output
@@ -80,6 +80,9 @@ namespace std _GLIBCXX_VISIBILITY(default)
     // <valarray>
     template <class _Tp>
     class valarray;
+
+    // <random>
+    class random_device;
 
     // <atomic>
     template <typename _Tp>
@@ -336,6 +339,9 @@ using std::complex;
 
 // <valarray>
 using std::valarray;
+
+// <random>
+using std::random_device;
 
 // <atomic>
 using std::atomic;

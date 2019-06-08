@@ -31,6 +31,7 @@ stdfwd::promise<int> get_promise();
 #include <array>
 #include <atomic>
 #include <bitset>
+#include <chrono>
 #include <complex>
 #include <condition_variable>
 #include <deque>
@@ -46,6 +47,7 @@ stdfwd::promise<int> get_promise();
 #include <mutex>
 #include <optional>
 #include <queue>
+#include <random>
 #include <regex>
 #include <set>
 #include <shared_mutex>
