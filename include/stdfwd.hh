@@ -9,6 +9,8 @@
 #define STDFWD_IS_LIBCPP
 #elif defined(__GLIBCXX__)
 #define STDFWD_IS_LIBSTDCPP
+#elif defined(_MSC_VER)
+#define STDFWD_IS_MSVC
 #else
 #error "Unknown stdlib"
 #endif
@@ -249,6 +251,199 @@ namespace std _GLIBCXX_VISIBILITY(default)
     _GLIBCXX_END_NAMESPACE_CONTAINER
 } // namespace std_GLIBCXX_VISIBILITY(default)
 
+#elif defined(STDFWD_IS_MSVC)
+
+_STD_BEGIN
+// <initializer_list>
+template <class _E>
+class initializer_list;
+
+// <utility>
+template <typename _T1, typename _T2>
+struct pair;
+
+// <tuple>
+template <typename... _Elements>
+class tuple;
+
+// <any>
+class any;
+
+// <optional>
+template <typename _Tp>
+class optional;
+struct nullopt_t;
+
+// <variant>
+template <typename... _Types>
+class variant;
+struct monostate;
+
+// <complex>
+template <typename _Tp>
+class complex;
+
+// <valarray>
+template <class _Tp>
+class valarray;
+
+// <random>
+class random_device;
+
+// <atomic>
+template <typename _Tp>
+struct atomic;
+struct atomic_flag;
+
+// <mutex>
+class mutex;
+class timed_mutex;
+class recursive_mutex;
+class recursive_timed_mutex;
+
+// <shared_mutex>
+class shared_mutex;
+class shared_timed_mutex;
+
+// <thread>
+class thread;
+
+// <future>
+template <typename _Res>
+class future;
+template <typename _Res>
+class shared_future;
+template <typename _Signature>
+class packaged_task;
+template <typename _Res>
+class promise;
+
+// <condition_variable>
+class condition_variable;
+class condition_variable_any;
+
+// <string>
+template <class _Elem, class _Traits, class _Alloc>
+class basic_string;
+using string = basic_string<char, char_traits<char>, allocator<char>>;
+using wstring = basic_string<wchar_t, char_traits<wchar_t>, allocator<wchar_t>>;
+using u16string = basic_string<char16_t, char_traits<char16_t>, allocator<char16_t>>;
+using u32string = basic_string<char32_t, char_traits<char32_t>, allocator<char32_t>>;
+
+// <string_view>
+template <typename _CharT, typename _Traits>
+class basic_string_view;
+using string_view = basic_string_view<char, std::char_traits<char>>;
+using wstring_view = basic_string_view<wchar_t, std::char_traits<wchar_t>>;
+using u16string_view = basic_string_view<char16_t, std::char_traits<char16_t>>;
+using u32string_view = basic_string_view<char32_t, std::char_traits<char32_t>>;
+
+// <memory>
+template <typename _Tp>
+class shared_ptr;
+template <typename _Tp>
+struct default_delete;
+template <typename _Tp, typename _Dp>
+class unique_ptr;
+template <typename _Tp>
+class weak_ptr;
+template <class _Tp>
+class allocator;
+
+// <functional>
+template <typename _Signature>
+class function;
+template <typename _Tp>
+struct hash;
+template <typename _Tp>
+struct equal_to;
+template <typename _Tp>
+struct not_equal_to;
+template <typename _Tp>
+struct greater;
+template <typename _Tp>
+struct less;
+template <typename _Tp>
+struct greater_equal;
+template <typename _Tp>
+struct less_equal;
+
+// <stack> - not in container for some reason
+template <typename _Tp, typename _Sequence>
+class stack;
+
+// <queue> - not in container for some reason
+template <typename _Tp, typename _Sequence>
+class queue;
+template <typename _Tp, typename _Sequence, typename _Compare>
+class priority_queue;
+
+// <vector>
+template <typename _Tp, typename _Alloc>
+class vector;
+
+// <deque>
+template <typename _Tp, typename _Alloc>
+class deque;
+
+// <list>
+template <typename _Tp, typename _Alloc>
+class list;
+
+// <regex>
+template <typename _Ch_type>
+class regex_traits;
+template <typename _Ch_type, typename _Rx_traits>
+class basic_regex;
+using regex = basic_regex<char, regex_traits<char>>;
+template <typename _BiIter>
+class sub_match;
+template <typename _Bi_iter, typename _Alloc>
+class match_results;
+
+// <forward_list>
+template <typename _Tp, typename _Alloc>
+class forward_list;
+
+// <map>
+template <typename _Key, typename _Tp, typename _Compare, typename _Alloc>
+class map;
+template <typename _Key, typename _Tp, typename _Compare, typename _Alloc>
+class multimap;
+
+// <set>
+template <typename _Key, typename _Compare, typename _Alloc>
+class set;
+template <typename _Key, typename _Compare, typename _Alloc>
+class multiset;
+
+// <unordered_map>
+template <typename _Key, typename _Tp, typename _Hash, typename _Pred, typename _Alloc>
+class unordered_map;
+template <typename _Key, typename _Tp, typename _Hash, typename _Pred, typename _Alloc>
+class unordered_multimap;
+
+// <unordered_set>
+template <typename _Value, typename _Hash, typename _Pred, typename _Alloc>
+class unordered_set;
+template <typename _Value, typename _Hash, typename _Pred, typename _Alloc>
+class unordered_multiset;
+
+namespace filesystem
+{
+// <filesystem>
+class path;
+}
+
+// <bitset>
+template <size_t _Nb>
+class bitset;
+
+// <array>
+template <typename _Tp, std::size_t _Nm>
+class array;
+_STD_END
+
 #else
 
 #error "not implemented"
@@ -432,7 +627,6 @@ using std::wstring_view;
 // <memory>
 using std::allocator;
 using std::shared_ptr;
-using std::uses_allocator;
 using std::weak_ptr;
 template <typename _Tp, typename _Dp = std::default_delete<_Tp>>
 using unique_ptr = std::unique_ptr<_Tp, _Dp>;
