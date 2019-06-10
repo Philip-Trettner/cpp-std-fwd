@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(cpp-std-fwd)
+project(std-fwd)
 
 option(STDFWD_FORCE_INCLUDE "if true, force includes <stdfwd.hh> in every header depending on this library." OFF)
 
@@ -10,6 +10,7 @@ get_directory_property(hasParent PARENT_DIRECTORY)
 if(NOT ${hasParent})
 
     add_library(std-fwd INTERFACE)
+    target_include_directories(std-fwd PUBLIC "include/")
 
     if(STDFWD_FORCE_INCLUDE)
         if (MSVC)
