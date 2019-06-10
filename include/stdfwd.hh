@@ -35,13 +35,7 @@
  *  <chrono> depends heavily on ratio
  */
 
-#include <iosfwd> // all of input/output
-
 #if defined(STDFWD_IS_LIBSTDCPP)
-
-#include <bits/memoryfwd.h> // allocator, uses_allocator
-
-#include <bits/stringfwd.h> // char_traits, basic_string, string, wstring, u16string, u32string
 
 // TODO: without the inline a number of warnings is generated
 #define _GLIBCXX_BEGIN_NAMESPACE_CXX11_INLINE inline _GLIBCXX_BEGIN_NAMESPACE_CXX11
@@ -76,6 +70,18 @@ namespace std _GLIBCXX_VISIBILITY(default)
     template <typename... _Types>
     class variant;
     struct monostate;
+
+    // <memory>
+    template <typename _Tp>
+    class shared_ptr;
+    template <typename _Tp>
+    struct default_delete;
+    template <typename _Tp, typename _Dp>
+    class unique_ptr;
+    template <typename _Tp>
+    class weak_ptr;
+    template <class _Tp>
+    class allocator;
 
     // <complex>
     template <typename _Tp>
@@ -123,6 +129,18 @@ namespace std _GLIBCXX_VISIBILITY(default)
     class condition_variable_any;
     }
 
+    // <string>
+    template <class CharT>
+    struct char_traits;
+    _GLIBCXX_BEGIN_NAMESPACE_CXX11_INLINE
+    template <class _Elem, class _Traits, class _Alloc>
+    class basic_string;
+    using string = basic_string<char, char_traits<char>, allocator<char>>;
+    using wstring = basic_string<wchar_t, char_traits<wchar_t>, allocator<wchar_t>>;
+    using u16string = basic_string<char16_t, char_traits<char16_t>, allocator<char16_t>>;
+    using u32string = basic_string<char32_t, char_traits<char32_t>, allocator<char32_t>>;
+    _GLIBCXX_END_NAMESPACE_CXX11
+
     // <string_view>
     template <typename _CharT, typename _Traits>
     class basic_string_view;
@@ -130,16 +148,6 @@ namespace std _GLIBCXX_VISIBILITY(default)
     using wstring_view = basic_string_view<wchar_t, std::char_traits<wchar_t>>;
     using u16string_view = basic_string_view<char16_t, std::char_traits<char16_t>>;
     using u32string_view = basic_string_view<char32_t, std::char_traits<char32_t>>;
-
-    // <memory>
-    template <typename _Tp>
-    class shared_ptr;
-    template <typename _Tp>
-    struct default_delete;
-    template <typename _Tp, typename _Dp>
-    class unique_ptr;
-    template <typename _Tp>
-    class weak_ptr;
 
     // <functional>
     template <typename _Signature>
@@ -239,6 +247,78 @@ namespace std _GLIBCXX_VISIBILITY(default)
     _GLIBCXX_END_NAMESPACE_CXX11
     }
 
+    // <iosfwd>
+    class ios_base;
+    template <typename _CharT, typename _Traits>
+    class basic_ios;
+    template <typename _CharT, typename _Traits>
+    class basic_streambuf;
+    template <typename _CharT, typename _Traits>
+    class basic_istream;
+    template <typename _CharT, typename _Traits>
+    class basic_ostream;
+    template <typename _CharT, typename _Traits>
+    class basic_iostream;
+
+    _GLIBCXX_BEGIN_NAMESPACE_CXX11_INLINE
+
+    template <typename _CharT, typename _Traits, typename _Alloc>
+    class basic_stringbuf;
+    template <typename _CharT, typename _Traits, typename _Alloc>
+    class basic_istringstream;
+    template <typename _CharT, typename _Traits, typename _Alloc>
+    class basic_ostringstream;
+    template <typename _CharT, typename _Traits, typename _Alloc>
+    class basic_stringstream;
+
+    _GLIBCXX_END_NAMESPACE_CXX11
+
+    template <typename _CharT, typename _Traits>
+    class basic_filebuf;
+    template <typename _CharT, typename _Traits>
+    class basic_ifstream;
+    template <typename _CharT, typename _Traits>
+    class basic_ofstream;
+    template <typename _CharT, typename _Traits>
+    class basic_fstream;
+    template <typename _CharT, typename _Traits>
+    class istreambuf_iterator;
+    template <typename _CharT, typename _Traits>
+    class ostreambuf_iterator;
+
+    using ios = basic_ios<char, char_traits<char>>;
+    using wios = basic_ios<wchar_t, char_traits<wchar_t>>;
+
+    using streambuf = basic_streambuf<char, char_traits<char>>;
+    using istream = basic_istream<char, char_traits<char>>;
+    using ostream = basic_ostream<char, char_traits<char>>;
+    using iostream = basic_iostream<char, char_traits<char>>;
+
+    using stringbuf = basic_stringbuf<char, char_traits<char>, allocator<char>>;
+    using istringstream = basic_istringstream<char, char_traits<char>, allocator<char>>;
+    using ostringstream = basic_ostringstream<char, char_traits<char>, allocator<char>>;
+    using stringstream = basic_stringstream<char, char_traits<char>, allocator<char>>;
+
+    using filebuf = basic_filebuf<char, char_traits<char>>;
+    using ifstream = basic_ifstream<char, char_traits<char>>;
+    using ofstream = basic_ofstream<char, char_traits<char>>;
+    using fstream = basic_fstream<char, char_traits<char>>;
+
+    using wstreambuf = basic_streambuf<wchar_t, char_traits<wchar_t>>;
+    using wistream = basic_istream<wchar_t, char_traits<wchar_t>>;
+    using wostream = basic_ostream<wchar_t, char_traits<wchar_t>>;
+    using wiostream = basic_iostream<wchar_t, char_traits<wchar_t>>;
+
+    using wstringbuf = basic_stringbuf<wchar_t, char_traits<wchar_t>, allocator<wchar_t>>;
+    using wistringstream = basic_istringstream<wchar_t, char_traits<wchar_t>, allocator<wchar_t>>;
+    using wostringstream = basic_ostringstream<wchar_t, char_traits<wchar_t>, allocator<wchar_t>>;
+    using wstringstream = basic_stringstream<wchar_t, char_traits<wchar_t>, allocator<wchar_t>>;
+
+    using wfilebuf = basic_filebuf<wchar_t, char_traits<wchar_t>>;
+    using wifstream = basic_ifstream<wchar_t, char_traits<wchar_t>>;
+    using wofstream = basic_ofstream<wchar_t, char_traits<wchar_t>>;
+    using wfstream = basic_fstream<wchar_t, char_traits<wchar_t>>;
+
     _GLIBCXX_END_NAMESPACE_VERSION
 
     _GLIBCXX_BEGIN_NAMESPACE_CONTAINER
@@ -281,6 +361,18 @@ struct nullopt_t;
 template <typename... _Types>
 class variant;
 struct monostate;
+
+// <memory>
+template <typename _Tp>
+class shared_ptr;
+template <typename _Tp>
+struct default_delete;
+template <typename _Tp, typename _Dp>
+class unique_ptr;
+template <typename _Tp>
+class weak_ptr;
+template <class _Tp>
+class allocator;
 
 // <complex>
 template <typename _Tp>
@@ -340,18 +432,6 @@ using string_view = basic_string_view<char, std::char_traits<char>>;
 using wstring_view = basic_string_view<wchar_t, std::char_traits<wchar_t>>;
 using u16string_view = basic_string_view<char16_t, std::char_traits<char16_t>>;
 using u32string_view = basic_string_view<char32_t, std::char_traits<char32_t>>;
-
-// <memory>
-template <typename _Tp>
-class shared_ptr;
-template <typename _Tp>
-struct default_delete;
-template <typename _Tp, typename _Dp>
-class unique_ptr;
-template <typename _Tp>
-class weak_ptr;
-template <class _Tp>
-class allocator;
 
 // <functional>
 template <typename _Signature>
@@ -437,6 +517,74 @@ namespace filesystem
 // <filesystem>
 class path;
 }
+
+// <iosfwd>
+class ios_base;
+template <typename _CharT, typename _Traits>
+class basic_ios;
+template <typename _CharT, typename _Traits>
+class basic_streambuf;
+template <typename _CharT, typename _Traits>
+class basic_istream;
+template <typename _CharT, typename _Traits>
+class basic_ostream;
+template <typename _CharT, typename _Traits>
+class basic_iostream;
+
+template <typename _CharT, typename _Traits, typename _Alloc>
+class basic_stringbuf;
+template <typename _CharT, typename _Traits, typename _Alloc>
+class basic_istringstream;
+template <typename _CharT, typename _Traits, typename _Alloc>
+class basic_ostringstream;
+template <typename _CharT, typename _Traits, typename _Alloc>
+class basic_stringstream;
+
+template <typename _CharT, typename _Traits>
+class basic_filebuf;
+template <typename _CharT, typename _Traits>
+class basic_ifstream;
+template <typename _CharT, typename _Traits>
+class basic_ofstream;
+template <typename _CharT, typename _Traits>
+class basic_fstream;
+template <typename _CharT, typename _Traits>
+class istreambuf_iterator;
+template <typename _CharT, typename _Traits>
+class ostreambuf_iterator;
+
+using ios = basic_ios<char, char_traits<char>>;
+using wios = basic_ios<wchar_t, char_traits<wchar_t>>;
+
+using streambuf = basic_streambuf<char, char_traits<char>>;
+using istream = basic_istream<char, char_traits<char>>;
+using ostream = basic_ostream<char, char_traits<char>>;
+using iostream = basic_iostream<char, char_traits<char>>;
+
+using stringbuf = basic_stringbuf<char, char_traits<char>, allocator<char>>;
+using istringstream = basic_istringstream<char, char_traits<char>, allocator<char>>;
+using ostringstream = basic_ostringstream<char, char_traits<char>, allocator<char>>;
+using stringstream = basic_stringstream<char, char_traits<char>, allocator<char>>;
+
+using filebuf = basic_filebuf<char, char_traits<char>>;
+using ifstream = basic_ifstream<char, char_traits<char>>;
+using ofstream = basic_ofstream<char, char_traits<char>>;
+using fstream = basic_fstream<char, char_traits<char>>;
+
+using wstreambuf = basic_streambuf<wchar_t, char_traits<wchar_t>>;
+using wistream = basic_istream<wchar_t, char_traits<wchar_t>>;
+using wostream = basic_ostream<wchar_t, char_traits<wchar_t>>;
+using wiostream = basic_iostream<wchar_t, char_traits<wchar_t>>;
+
+using wstringbuf = basic_stringbuf<wchar_t, char_traits<wchar_t>, allocator<wchar_t>>;
+using wistringstream = basic_istringstream<wchar_t, char_traits<wchar_t>, allocator<wchar_t>>;
+using wostringstream = basic_ostringstream<wchar_t, char_traits<wchar_t>, allocator<wchar_t>>;
+using wstringstream = basic_stringstream<wchar_t, char_traits<wchar_t>, allocator<wchar_t>>;
+
+using wfilebuf = basic_filebuf<wchar_t, char_traits<wchar_t>>;
+using wifstream = basic_ifstream<wchar_t, char_traits<wchar_t>>;
+using wofstream = basic_ofstream<wchar_t, char_traits<wchar_t>>;
+using wfstream = basic_fstream<wchar_t, char_traits<wchar_t>>;
 
 // <bitset>
 template <size_t _Nb>

@@ -2,7 +2,11 @@
 
 Forward declarations for most useful runtime classes of the C++ 17 standard library.
 
-## Usage:
+## Benchmarks
+
+TODO
+
+## Usage
 
 Use forward declarations where possible in the header:
 
@@ -30,6 +34,8 @@ stdfwd::unordered_set<int> get_unordered_set();
 
 And in the `.cc` just `#include <header>` and define the functions using the normal `std` type (all declarations inside `stdfwd` are typedefs into `std`).
 
+`std::` forward declarations can also be used but won't have default template arguments (e.g. `std::vector<int>` does not work and `std::vector<int, std::allocator<int>>` or `stdfwd::vector<int>` must be used).
+
 Adding support for `map` and `unordered_map` for custom data types:
 
 ```cpp
@@ -53,6 +59,20 @@ struct std::less<foo>
 {
     bool operator()(foo const& a, foo const& b) const noexcept { return a.v < b.v; }
 };
+```
+
+## CMake
+
+If not the top-level `CMakeLists.txt`, this project adds as an interface library and can be used with:
+
+```cmake
+# if set, force-includes "stdfwd.hh" in every translation unit
+# this is optional and low-cost (see benchmarks)
+# set(STDFWD_FORCE_INCLUDE ON CACHE BOOL " " FORCE)
+
+add_subdirectory(path/to/cpp-std-fwd)
+
+target_link_libraries(${PROJECT_NAME} PUBLIC std-fwd)
 ```
 
 ## FAQ
@@ -93,6 +113,11 @@ struct std::less<foo>
   Additionally, it is not clear if all code bases can be immediately migrated to modules.
   This `std` forward header is a small and easy-to-implement non-intrusive change with big payoffs for many code bases.
 
+* Why is `iosfwd` not used internally?
+
+  This header should be as fast as possible.
+  `iosfwd` includes more than forward declaration.
+  It also fully defines the `postypes` at least in libstdc++.
 
 ## TODO
 
