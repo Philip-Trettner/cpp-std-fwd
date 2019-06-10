@@ -141,6 +141,10 @@ target_link_libraries(${PROJECT_NAME} PUBLIC std-fwd)
   `iosfwd` includes more than forward declaration.
   It also fully defines the `postypes` at least in libstdc++.
 
+## Related Work
+
+* https://blog.magnum.graphics/backstage/forward-declaring-stl-container-types/
+
 ## TODO
 
 * add support for `libc++`
