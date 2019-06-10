@@ -30,6 +30,31 @@ stdfwd::unordered_set<int> get_unordered_set();
 
 And in the `.cc` just `#include <header>` and define the functions using the normal `std` type (all declarations inside `stdfwd` are typedefs into `std`).
 
+Adding support for `map` and `unordered_map` for custom data types:
+
+```cpp
+#include <stdfwd.hh>
+
+struct foo
+{
+    int v;
+
+    bool operator==(foo const& r) const { return v == r.v; }
+};
+
+template <>
+struct std::hash<foo>
+{
+    size_t operator()(foo const& f) const noexcept { return f.v; }
+};
+
+template <>
+struct std::less<foo>
+{
+    bool operator()(foo const& a, foo const& b) const noexcept { return a.v < b.v; }
+};
+```
+
 ## FAQ
 
 * Why?
@@ -71,6 +96,5 @@ And in the `.cc` just `#include <header>` and define the functions using the nor
 
 ## TODO
 
-* complete list of C++17 forward declarations
-* make versions for `msvc` and `libc++`
+* make versions `libc++`
 * add benchmarks

@@ -1,38 +1,38 @@
 #include <stdfwd.hh>
 
-struct foo
+struct my_hashable_type
 {
     int a;
 
-    bool operator==(foo const& r) const { return a == r.a; }
+    bool operator==(my_hashable_type const& r) const { return a == r.a; }
 };
 template <>
-struct stdfwd::hash<foo>
+struct stdfwd::hash<my_hashable_type>
 {
-    size_t operator()(foo const& f) const noexcept { return f.a; }
+    size_t operator()(my_hashable_type const& f) const noexcept { return f.a; }
 };
 
-struct bar
+struct my_hashable_type2
 {
     int a;
 
-    bool operator==(bar const& r) const { return a == r.a; }
+    bool operator==(my_hashable_type2 const& r) const { return a == r.a; }
 };
 template <>
-struct std::hash<bar>
+struct std::hash<my_hashable_type2>
 {
-    size_t operator()(bar const& f) const noexcept { return f.a; }
+    size_t operator()(my_hashable_type2 const& f) const noexcept { return f.a; }
 };
 
 #include <unordered_map>
 
-int hash_test(foo f)
+int hash_test(my_hashable_type f)
 {
-    std::unordered_map<foo, int> m;
+    std::unordered_map<my_hashable_type, int> m;
     return m[f];
 }
-int hash_test(bar f)
+int hash_test(my_hashable_type2 f)
 {
-    std::unordered_map<bar, int> m;
+    std::unordered_map<my_hashable_type2, int> m;
     return m[f];
 }
