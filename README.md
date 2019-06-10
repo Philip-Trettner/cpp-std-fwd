@@ -4,7 +4,22 @@ Forward declarations for most useful runtime classes of the C++ 17 standard libr
 
 ## Benchmarks
 
-TODO
+TL;DR: adding `#include <stdfwd.hh>` adds about 3 ms per translation unit.
+
+| file | clang-6 | clang-7 | gcc-7 | gcc-8 |
+| --- | ---: | ---: | ---: | ---: |
+| empty | 12.6 ms | 13.9 ms | 5.5 ms | 5.5 ms |
+| **`<stdfwd.hh>`** | **15.6 ms** | **17.2 ms** | **8.3 ms** | **7.7 ms** |
+| `<vector>` | 56.7 ms | 61.3 ms | 46.5 ms | 40.8 ms |
+| `<string>` | 105.7 ms | 113.1 ms | 95.8 ms | 85.3 ms |
+| `<array>` | 108.5 ms | 116.3 ms | 99.3 ms | 88.6 ms |
+| `<map>` | 139.8 ms | 149.9 ms | 128.8 ms | 114.9 ms |
+| `<unordered_map>` | 155.0 ms | 162.9 ms | 141.1 ms | 131.5 ms
+| `<functional>` | 192.7 ms | 205.2 ms | 178.2 ms | 162.3 ms |
+
+Just compiling a single source including the specified file (`compiler -std=c++17 -O0 -c /tmp/file.cc -o /tmp/file.o`).
+
+(system: intel i9-9900k 5 GHz, samsung 970 1TB pro nvme ssd, linux mint 19.1 tessa, kernel 4.15.0)
 
 ## Usage
 
@@ -121,5 +136,5 @@ target_link_libraries(${PROJECT_NAME} PUBLIC std-fwd)
 
 ## TODO
 
-* make versions `libc++`
-* add benchmarks
+* add support for `libc++`
+* make `msvc` benchmark
