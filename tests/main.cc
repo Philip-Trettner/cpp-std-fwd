@@ -1,6 +1,7 @@
-#include <stdfwd.hh>
+#include "tests.hh"
 
 int main()
 {
-    // nothing
+    //
+    test_filesystem();
 }
