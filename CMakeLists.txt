@@ -10,13 +10,13 @@ get_directory_property(hasParent PARENT_DIRECTORY)
 if(NOT ${hasParent})
 
     add_library(std-fwd INTERFACE)
-    target_include_directories(std-fwd PUBLIC "include/")
+    target_include_directories(std-fwd INTERFACE "include/")
 
     if(STDFWD_FORCE_INCLUDE)
         if (MSVC)
-            target_compile_options(${PROJECT_NAME} "/FI stdfwd.hh")
+            target_compile_options(${PROJECT_NAME} INTERFACE "/FIstdfwd.hh")
         else()
-            target_compile_options(${PROJECT_NAME} "-include stdfwd.hh")
+            target_compile_options(${PROJECT_NAME} INTERFACE "-includestdfwd.hh")
         endif()
     endif()
 
