@@ -78,12 +78,12 @@ struct std::less<foo>
 
 ## CMake
 
-If not the top-level `CMakeLists.txt`, this project adds as an interface library and can be used with:
+If the `CMakeLists.txt` is included, an interface library `std-fwd` is created:
 
 ```cmake
 # if set, force-includes "stdfwd.hh" in every translation unit
 # this is optional and low-cost (see benchmarks)
-# set(STDFWD_FORCE_INCLUDE ON CACHE BOOL " " FORCE)
+# set(STDFWD_FORCE_INCLUDE ON CACHE BOOL "" FORCE)
 
 add_subdirectory(path/to/cpp-std-fwd)
 
