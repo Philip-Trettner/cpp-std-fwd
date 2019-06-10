@@ -48,6 +48,8 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+    inline namespace __cxx11 __attribute__((__abi_tag__("cxx11"))) {}
+
     // <initializer_list>
     template <class _E>
     class initializer_list;
@@ -228,6 +230,7 @@ namespace std _GLIBCXX_VISIBILITY(default)
 
     namespace filesystem
     {
+    inline namespace __cxx11 __attribute__((__abi_tag__("cxx11"))) {}
     _GLIBCXX_BEGIN_NAMESPACE_CXX11_INLINE
 
     // <filesystem>
