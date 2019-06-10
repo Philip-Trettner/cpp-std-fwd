@@ -10,14 +10,21 @@ TL;DR: adding `#include <stdfwd.hh>` adds about 3 ms per translation unit.
 | --- | ---: | ---: | ---: | ---: |
 | empty | 12.6 ms | 13.9 ms | 5.5 ms | 5.5 ms |
 | **`<stdfwd.hh>`** | **15.6 ms** | **17.2 ms** | **8.3 ms** | **7.7 ms** |
+| `<type_traits>` | 22.5 ms | 24.5 ms | 13.9 ms | 12.7 ms |
+| `<utility>` | 26.7 ms | 28.4 ms | 17.1 ms | 15.4 ms |
+| `<string_view>` | 52.0 ms | 56.0 ms | 41.9 ms | 36.4 ms |
 | `<vector>` | 56.7 ms | 61.3 ms | 46.5 ms | 40.8 ms |
 | `<string>` | 105.7 ms | 113.1 ms | 95.8 ms | 85.3 ms |
 | `<array>` | 108.5 ms | 116.3 ms | 99.3 ms | 88.6 ms |
+| `<optional>` | 112.7 ms | 121.0 ms | 103.1 ms | 92.9 ms |
 | `<map>` | 139.8 ms | 149.9 ms | 128.8 ms | 114.9 ms |
-| `<unordered_map>` | 155.0 ms | 162.9 ms | 141.1 ms | 131.5 ms
+| `<memory>` | 140.1 ms | 149.2 ms | 130.3 ms | 115.4 ms |
+| `<iostream>` | 150.0 ms | 158.7 ms | 145.1 ms | 127.4 ms |
+| `<unordered_map>` | 155.0 ms | 162.9 ms | 141.1 ms | 131.5 ms |
 | `<functional>` | 192.7 ms | 205.2 ms | 178.2 ms | 162.3 ms |
+| `<regex>` | 310.4 ms | 326.0 ms | 308.6 ms | 268.4 ms |
 
-Just compiling a single source including the specified file (`compiler -std=c++17 -O0 -c /tmp/file.cc -o /tmp/file.o`).
+Just compiling a single source including the specified file (`compiler -std=c++17 -O0 -c /tmp/file.cc -o /tmp/file.o`), best out of 10 compilations.
 
 (system: intel i9-9900k 5 GHz, samsung 970 1TB pro nvme ssd, linux mint 19.1 tessa, kernel 4.15.0)
 
