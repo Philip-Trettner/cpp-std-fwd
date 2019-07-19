@@ -337,6 +337,9 @@ namespace std _GLIBCXX_VISIBILITY(default)
 #elif defined(STDFWD_IS_MSVC)
 
 _STD_BEGIN
+
+using size_t = decltype(sizeof(0));
+
 // <initializer_list>
 template <class _E>
 class initializer_list;
@@ -418,6 +421,8 @@ class condition_variable;
 class condition_variable_any;
 
 // <string>
+template <class CharT>
+struct char_traits;
 template <class _Elem, class _Traits, class _Alloc>
 class basic_string;
 using string = basic_string<char, char_traits<char>, allocator<char>>;
@@ -591,7 +596,7 @@ template <size_t _Nb>
 class bitset;
 
 // <array>
-template <typename _Tp, std::size_t _Nm>
+template <typename _Tp, size_t _Nm>
 class array;
 _STD_END
 
