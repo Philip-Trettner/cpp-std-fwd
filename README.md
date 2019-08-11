@@ -2,6 +2,8 @@
 
 Forward declarations for most useful runtime classes of the C++ 17 standard library.
 
+**DISCLAIMER: This project is meant as a proof-of-concept for a proposal to standardize a forward declaration header for `std`. Using it is UB and should only be done to evaluate the proposal (see FAQ at the bottom).**
+
 ## Benchmarks
 
 TL;DR: adding `#include <stdfwd.hh>` adds about 3 ms per translation unit.
