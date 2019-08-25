@@ -8,27 +8,29 @@ Forward declarations for most useful runtime classes of the C++ 17 standard libr
 
 TL;DR: adding `#include <stdfwd.hh>` adds about 3 ms per translation unit.
 
-| file | clang-6 | clang-7 | gcc-7 | gcc-8 |
-| --- | ---: | ---: | ---: | ---: |
-| empty | 12.6 ms | 13.9 ms | 5.5 ms | 5.5 ms |
-| **`<stdfwd.hh>`** | **15.6 ms** | **17.2 ms** | **8.3 ms** | **7.7 ms** |
-| `<type_traits>` | 22.5 ms | 24.5 ms | 13.9 ms | 12.7 ms |
-| `<utility>` | 26.7 ms | 28.4 ms | 17.1 ms | 15.4 ms |
-| `<string_view>` | 52.0 ms | 56.0 ms | 41.9 ms | 36.4 ms |
-| `<vector>` | 56.7 ms | 61.3 ms | 46.5 ms | 40.8 ms |
-| `<string>` | 105.7 ms | 113.1 ms | 95.8 ms | 85.3 ms |
-| `<array>` | 108.5 ms | 116.3 ms | 99.3 ms | 88.6 ms |
-| `<optional>` | 112.7 ms | 121.0 ms | 103.1 ms | 92.9 ms |
-| `<map>` | 139.8 ms | 149.9 ms | 128.8 ms | 114.9 ms |
-| `<memory>` | 140.1 ms | 149.2 ms | 130.3 ms | 115.4 ms |
-| `<iostream>` | 150.0 ms | 158.7 ms | 145.1 ms | 127.4 ms |
-| `<unordered_map>` | 155.0 ms | 162.9 ms | 141.1 ms | 131.5 ms |
-| `<functional>` | 192.7 ms | 205.2 ms | 178.2 ms | 162.3 ms |
-| `<regex>` | 310.4 ms | 326.0 ms | 308.6 ms | 268.4 ms |
+| file              | clang-6      | clang-7      | gcc-7        | gcc-8        | vs19         |
+|-------------------|--------------|--------------|--------------|--------------|--------------|
+| empty             | 12.6 ms      | 13.9 ms      | 5.5 ms       | 5.5 ms       | 104.8 ms     |
+| **`<stdfwd.hh>`** | **+ 3.0 ms** | **+ 3.3 ms** | **+ 2.8 ms** | **+ 2.2 ms** | **+ 6.7 ms** |
+| `<type_traits>`   | + 9.9 ms     | + 10.6 ms    | + 8.4 ms     | + 7.2 ms     | + 28.2  ms   |
+| `<utility>`       | + 14.1 ms    | + 14.5 ms    | + 11.6 ms    | + 10.2 ms    | + 31.0 ms    |
+| `<string_view>`   | + 39.4 ms    | + 42.1 ms    | + 36.4 ms    | + 30.9 ms    | + 121.6 ms   |
+| `<vector>`        | + 44.1 ms    | + 47.4 ms    | + 41.0 ms    | + 35.5 ms    | + 89.9 ms    |
+| `<string>`        | + 93.1 ms    | + 99.2 ms    | + 90.3 ms    | + 79.8 ms    | + 137.7 ms   |
+| `<array>`         | + 95.9 ms    | + 102.4 ms   | + 93.8 ms    | + 83.1 ms    | + 248.2 ms   |
+| `<optional>`      | + 100.1 ms   | + 107.1 ms   | + 97.6 ms    | + 87.4 ms    | + 85.1 ms    |
+| `<map>`           | + 127.2 ms   | + 136.0 ms   | + 123.3 ms   | + 109.6 ms   | + 94.9 ms    |
+| `<memory>`        | + 127.5 ms   | + 135.3 ms   | + 124.8 ms   | + 109.9 ms   | + 89.2 ms    |
+| `<iostream>`      | + 137.4 ms   | + 144.8 ms   | + 139.6 ms   | + 121.9 ms   | + 238.0 ms   |
+| `<unordered_map>` | + 142.4 ms   | + 149.0 ms   | + 135.6 ms   | + 126.0 ms   | + 138.2 ms   |
+| `<functional>`    | + 180.1 ms   | + 191.3 ms   | + 172.7 ms   | + 156.8 ms   | + 160.1 ms   |
+| `<regex>`         | + 297.8 ms   | + 312.1 ms   | + 303.1 ms   | + 262.9 ms   | + 332.5 ms   |
 
 Just compiling a single source including the specified file (`compiler -std=c++17 -O0 -c /tmp/file.cc -o /tmp/file.o`), best out of 10 compilations.
 
 (system: intel i9-9900k 5 GHz, samsung 970 1TB pro nvme ssd, linux mint 19.1 tessa, kernel 4.15.0)
+
+Windows benchmark done on Win10 with `/GS /TP /W3 /Zc:wchar_t /Gm- /Od /Ob0 /Zc:inline /fp:precise /WX- /Zc:forScope /RTC1 /GR /Gd /MDd /std:c++17 /FC /EHsc /c`.
 
 ## Usage
 
@@ -150,4 +152,3 @@ target_link_libraries(${PROJECT_NAME} PUBLIC std-fwd)
 ## TODO
 
 * add support for `libc++`
-* make `msvc` benchmark
