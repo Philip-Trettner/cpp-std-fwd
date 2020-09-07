@@ -35,13 +35,27 @@
  *  <chrono> depends heavily on ratio
  */
 
-#if defined(STDFWD_IS_LIBSTDCPP)
-
+#if defined(STDFWD_IS_LIBCPP)
+#    define STD_FWD_VISIBILITY _LIBCPP_TEMPLATE_VIS
+#    define STDFWD_BEGIN_NAMESPACE_STD _LIBCPP_BEGIN_NAMESPACE_STD
+#    define STDFWD_END_NAMESPACE_STD _LIBCPP_END_NAMESPACE_STD
+#    define _GLIBCXX_BEGIN_NAMESPACE_VERSION
+#    define _GLIBCXX_END_NAMESPACE_VERSION
+#    define _GLIBCXX_BEGIN_NAMESPACE_CXX11_INLINE
+#    define _GLIBCXX_END_NAMESPACE_CXX11
+#    define _GLIBCXX_BEGIN_NAMESPACE_CONTAINER
+#    define _GLIBCXX_END_NAMESPACE_CONTAINER
+#elif defined(STDFWD_IS_LIBSTDCPP)
 // TODO: without the inline a number of warnings is generated
-#define _GLIBCXX_BEGIN_NAMESPACE_CXX11_INLINE inline _GLIBCXX_BEGIN_NAMESPACE_CXX11
+#    define _GLIBCXX_BEGIN_NAMESPACE_CXX11_INLINE inline _GLIBCXX_BEGIN_NAMESPACE_CXX11
+#    define STDFWD_BEGIN_NAMESPACE_STD namespace std _GLIBCXX_VISIBILITY(default) {
+#    define STDFWD_END_NAMESPACE_STD }
+#    define STD_FWD_VISIBILITY
+#else
+#endif
 
-namespace std _GLIBCXX_VISIBILITY(default)
-{
+#if defined(STDFWD_IS_LIBCPP) || defined(STDFWD_IS_LIBSTDCPP)
+STDFWD_BEGIN_NAMESPACE_STD
     inline namespace __cxx11 __attribute__((__abi_tag__("cxx11"))) {}
 
     // <initializer_list>
@@ -331,8 +345,8 @@ namespace std _GLIBCXX_VISIBILITY(default)
     template <typename _Tp, std::size_t _Nm>
     struct array;
 
-    _GLIBCXX_END_NAMESPACE_CONTAINER
-} // namespace std_GLIBCXX_VISIBILITY(default)
+// namespace std_GLIBCXX_VISIBILITY(default)
+STDFWD_END_NAMESPACE_STD
 
 #elif defined(STDFWD_IS_MSVC)
 
