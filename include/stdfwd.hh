@@ -600,6 +600,282 @@ template <typename _Tp, size_t _Nm>
 class array;
 _STD_END
 
+#elif defined(STDFWD_IS_LIBCPP)
+
+namespace std {
+
+    // <initializer_list>
+template <class _E>
+class _LIBCPP_TEMPLATE_VIS initializer_list;
+
+}
+
+_LIBCPP_BEGIN_NAMESPACE_STD
+
+typedef __PTRDIFF_TYPE__ ptrdiff_t;
+typedef __SIZE_TYPE__ size_t;
+
+// <utility>
+template <typename _T1, typename _T2>
+struct pair;
+
+// <tuple>
+template <typename... _Elements>
+class tuple;
+
+// <any>
+class any;
+
+// <optional>
+template <typename _Tp>
+class optional;
+struct nullopt_t;
+
+// <variant>
+template <typename... _Types>
+class variant;
+struct monostate;
+
+// <memory>
+template <typename _Tp>
+class shared_ptr;
+template <typename _Tp>
+struct default_delete;
+template <typename _Tp, typename _Dp>
+class unique_ptr;
+template <typename _Tp>
+class weak_ptr;
+template <class _Tp>
+class allocator;
+
+// <complex>
+template <typename _Tp>
+struct complex;
+
+// <valarray>
+template <class _Tp>
+class valarray;
+
+// <random>
+class random_device;
+
+// <atomic>
+template <typename _Tp>
+struct atomic;
+struct atomic_flag;
+
+// <mutex>
+class mutex;
+class timed_mutex;
+class recursive_mutex;
+class recursive_timed_mutex;
+
+// <shared_mutex>
+class shared_mutex;
+class shared_timed_mutex;
+
+// <thread>
+class thread;
+
+// <future>
+template <typename _Res>
+class future;
+template <typename _Res>
+class shared_future;
+template <typename _Signature>
+class packaged_task;
+template <typename _Res>
+class promise;
+
+// <condition_variable>
+class condition_variable;
+inline namespace _V2
+{
+class condition_variable_any;
+}
+
+// <string>
+template <class CharT>
+struct char_traits;
+template <class _Elem, class _Traits, class _Alloc>
+class _LIBCPP_TEMPLATE_VIS basic_string;
+
+using string = basic_string<char, char_traits<char>, allocator<char>>;
+using wstring = basic_string<wchar_t, char_traits<wchar_t>, allocator<wchar_t>>;
+using u16string = basic_string<char16_t, char_traits<char16_t>, allocator<char16_t>>;
+using u32string = basic_string<char32_t, char_traits<char32_t>, allocator<char32_t>>;
+
+// <string_view>
+template <typename _CharT, typename _Traits>
+class basic_string_view;
+using string_view = basic_string_view<char, std::char_traits<char>>;
+using wstring_view = basic_string_view<wchar_t, std::char_traits<wchar_t>>;
+using u16string_view = basic_string_view<char16_t, std::char_traits<char16_t>>;
+using u32string_view = basic_string_view<char32_t, std::char_traits<char32_t>>;
+
+// <functional>
+template <typename _Signature>
+class function;
+template <typename _Tp>
+struct hash;
+template <typename _Tp>
+struct equal_to;
+template <typename _Tp>
+struct not_equal_to;
+template <typename _Tp>
+struct greater;
+template <typename _Tp>
+struct less;
+template <typename _Tp>
+struct greater_equal;
+template <typename _Tp>
+struct less_equal;
+
+// <stack> - not in container for some reason
+template <typename _Tp, typename _Sequence>
+class stack;
+
+// <queue> - not in container for some reason
+template <typename _Tp, typename _Sequence>
+class queue;
+template <typename _Tp, typename _Sequence, typename _Compare>
+class priority_queue;
+
+// <vector>
+template <typename _Tp, typename _Alloc>
+class vector;
+
+// <deque>
+template <typename _Tp, typename _Alloc>
+class deque;
+
+// <list>
+template <typename _Tp, typename _Alloc>
+class list;
+
+// <regex>
+template <typename _Ch_type>
+struct regex_traits;
+template <typename _Ch_type, typename _Rx_traits>
+class basic_regex;
+using regex = basic_regex<char, regex_traits<char>>;
+template <typename _BiIter>
+class sub_match;
+template <typename _Bi_iter, typename _Alloc>
+class match_results;
+
+// <forward_list>
+template <typename _Tp, typename _Alloc>
+class forward_list;
+
+// <map>
+template <typename _Key, typename _Tp, typename _Compare, typename _Alloc>
+class map;
+template <typename _Key, typename _Tp, typename _Compare, typename _Alloc>
+class multimap;
+
+// <set>
+template <typename _Key, typename _Compare, typename _Alloc>
+class set;
+template <typename _Key, typename _Compare, typename _Alloc>
+class multiset;
+
+// <unordered_map>
+template <typename _Key, typename _Tp, typename _Hash, typename _Pred, typename _Alloc>
+class unordered_map;
+template <typename _Key, typename _Tp, typename _Hash, typename _Pred, typename _Alloc>
+class unordered_multimap;
+
+// <unordered_set>
+template <typename _Value, typename _Hash, typename _Pred, typename _Alloc>
+class unordered_set;
+template <typename _Value, typename _Hash, typename _Pred, typename _Alloc>
+class unordered_multiset;
+
+// <iosfwd>
+class ios_base;
+template <typename _CharT, typename _Traits>
+class basic_ios;
+template <typename _CharT, typename _Traits>
+class basic_streambuf;
+template <typename _CharT, typename _Traits>
+class basic_istream;
+template <typename _CharT, typename _Traits>
+class basic_ostream;
+template <typename _CharT, typename _Traits>
+class basic_iostream;
+
+template <typename _CharT, typename _Traits, typename _Alloc>
+class basic_stringbuf;
+template <typename _CharT, typename _Traits, typename _Alloc>
+class basic_istringstream;
+template <typename _CharT, typename _Traits, typename _Alloc>
+class basic_ostringstream;
+template <typename _CharT, typename _Traits, typename _Alloc>
+class basic_stringstream;
+
+template <typename _CharT, typename _Traits>
+class basic_filebuf;
+template <typename _CharT, typename _Traits>
+class basic_ifstream;
+template <typename _CharT, typename _Traits>
+class basic_ofstream;
+template <typename _CharT, typename _Traits>
+class basic_fstream;
+template <typename _CharT, typename _Traits>
+class istreambuf_iterator;
+template <typename _CharT, typename _Traits>
+class ostreambuf_iterator;
+
+using ios = basic_ios<char, char_traits<char>>;
+using wios = basic_ios<wchar_t, char_traits<wchar_t>>;
+
+using streambuf = basic_streambuf<char, char_traits<char>>;
+using istream = basic_istream<char, char_traits<char>>;
+using ostream = basic_ostream<char, char_traits<char>>;
+using iostream = basic_iostream<char, char_traits<char>>;
+
+using stringbuf = basic_stringbuf<char, char_traits<char>, allocator<char>>;
+using istringstream = basic_istringstream<char, char_traits<char>, allocator<char>>;
+using ostringstream = basic_ostringstream<char, char_traits<char>, allocator<char>>;
+using stringstream = basic_stringstream<char, char_traits<char>, allocator<char>>;
+
+using filebuf = basic_filebuf<char, char_traits<char>>;
+using ifstream = basic_ifstream<char, char_traits<char>>;
+using ofstream = basic_ofstream<char, char_traits<char>>;
+using fstream = basic_fstream<char, char_traits<char>>;
+
+using wstreambuf = basic_streambuf<wchar_t, char_traits<wchar_t>>;
+using wistream = basic_istream<wchar_t, char_traits<wchar_t>>;
+using wostream = basic_ostream<wchar_t, char_traits<wchar_t>>;
+using wiostream = basic_iostream<wchar_t, char_traits<wchar_t>>;
+
+using wstringbuf = basic_stringbuf<wchar_t, char_traits<wchar_t>, allocator<wchar_t>>;
+using wistringstream = basic_istringstream<wchar_t, char_traits<wchar_t>, allocator<wchar_t>>;
+using wostringstream = basic_ostringstream<wchar_t, char_traits<wchar_t>, allocator<wchar_t>>;
+using wstringstream = basic_stringstream<wchar_t, char_traits<wchar_t>, allocator<wchar_t>>;
+
+using wfilebuf = basic_filebuf<wchar_t, char_traits<wchar_t>>;
+using wifstream = basic_ifstream<wchar_t, char_traits<wchar_t>>;
+using wofstream = basic_ofstream<wchar_t, char_traits<wchar_t>>;
+using wfstream = basic_fstream<wchar_t, char_traits<wchar_t>>;
+
+
+template <size_t _Size>
+class _LIBCPP_TEMPLATE_VIS bitset;
+
+template <class _Tp, size_t _Size>
+struct _LIBCPP_TEMPLATE_VIS array;
+
+_LIBCPP_END_NAMESPACE_STD
+
+_LIBCPP_BEGIN_NAMESPACE_FILESYSTEM
+
+// <filesystem>
+class path;
+
+_LIBCPP_END_NAMESPACE_FILESYSTEM
+
 #else
 
 #error "not implemented"
